@@ -406,6 +406,40 @@ class ReadMoreHandler {
     }
 }
 
+// Hamburger Menu Handler
+class HamburgerMenu {
+    constructor() {
+        this.hamburgerBtn = document.getElementById('hamburger-btn');
+        this.mobileMenu = document.getElementById('mobile-menu');
+        this.init();
+    }
+    
+    init() {
+        if (this.hamburgerBtn && this.mobileMenu) {
+            this.hamburgerBtn.addEventListener('click', () => {
+                this.toggleMenu();
+            });
+            
+            // Close menu when clicking outside
+            this.mobileMenu.addEventListener('click', (e) => {
+                if (e.target === this.mobileMenu) {
+                    this.closeMenu();
+                }
+            });
+        }
+    }
+    
+    toggleMenu() {
+        this.mobileMenu.classList.toggle('active');
+        this.hamburgerBtn.classList.toggle('active');
+    }
+    
+    closeMenu() {
+        this.mobileMenu.classList.remove('active');
+        this.hamburgerBtn.classList.remove('active');
+    }
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new BannerSlider();
@@ -417,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new GallerySlider();
     new NavbarScroll();
     new ReadMoreHandler();
+    new HamburgerMenu();
     
     // Add loading animation
     document.body.classList.add('loaded');
