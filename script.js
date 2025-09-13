@@ -349,6 +349,63 @@ class EnhancedScrollAnimations {
     }
 }
 
+// Read More Functionality for Mobile
+class ReadMoreHandler {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        if (window.innerWidth <= 768) {
+            this.setupReadMore();
+        }
+        
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                this.setupReadMore();
+            } else {
+                this.removeReadMore();
+            }
+        });
+    }
+    
+    setupReadMore() {
+        const ministryOverview = document.querySelector('.ministry-overview');
+        if (ministryOverview && !ministryOverview.querySelector('.read-more-btn')) {
+            ministryOverview.classList.add('collapsed');
+            
+            const readMoreBtn = document.createElement('button');
+            readMoreBtn.className = 'read-more-btn';
+            readMoreBtn.textContent = 'Read More';
+            
+            readMoreBtn.addEventListener('click', () => {
+                if (ministryOverview.classList.contains('collapsed')) {
+                    ministryOverview.classList.remove('collapsed');
+                    readMoreBtn.textContent = 'Read Less';
+                } else {
+                    ministryOverview.classList.add('collapsed');
+                    readMoreBtn.textContent = 'Read More';
+                }
+            });
+            
+            ministryOverview.appendChild(readMoreBtn);
+        }
+    }
+    
+    removeReadMore() {
+        const ministryOverview = document.querySelector('.ministry-overview');
+        const readMoreBtn = document.querySelector('.read-more-btn');
+        
+        if (ministryOverview) {
+            ministryOverview.classList.remove('collapsed');
+        }
+        
+        if (readMoreBtn) {
+            readMoreBtn.remove();
+        }
+    }
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new BannerSlider();
@@ -359,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new EnhancedScrollAnimations();
     new GallerySlider();
     new NavbarScroll();
+    new ReadMoreHandler();
     
     // Add loading animation
     document.body.classList.add('loaded');
