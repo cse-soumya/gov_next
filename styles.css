@@ -138,11 +138,11 @@ body {
 .navbar {
     background: #1e8449;
     width: 100vw;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
     transition: background-color 0.3s ease;
     margin-left: calc(-50vw + 50%);
+    overflow: visible;
 }
 
 .navbar.scrolled {
@@ -157,6 +157,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow: visible;
 }
 
 .nav-item {
@@ -192,7 +193,7 @@ body {
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1000;
+    z-index: 9999;
     border: none;
 }
 
@@ -1082,14 +1083,15 @@ body {
     }
     
     .navbar {
-        width: 100%;
-        margin-left: 0;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        overflow: visible;
     }
     
     .nav-menu {
         justify-content: flex-start;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow: visible;
+        flex-wrap: wrap;
     }
     
     .nav-link {
@@ -1107,17 +1109,32 @@ body {
     .header-top {
         flex-direction: column;
         gap: 20px;
+        text-align: center;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .ministry-title h1 {
+        font-size: 20px;
+    }
+    
+    .ministry-title h2 {
+        font-size: 16px;
     }
     
     .navbar {
-        width: 100%;
-        margin-left: 0;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
     }
     
     .nav-menu {
         flex-direction: column;
         justify-content: flex-start;
-        overflow-x: visible;
+        overflow: visible;
     }
     
     .nav-link {
@@ -1151,6 +1168,7 @@ body {
     .highlight-programs {
         flex-direction: column;
         gap: 15px;
+        padding: 20px 0;
     }
     
     .slide {
@@ -1160,24 +1178,82 @@ body {
     }
     
     .slide-content h2 {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .about-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .department-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .department-card {
+        aspect-ratio: 1;
+        padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .department-card h4 {
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.3;
+    }
+    
+    .department-card i {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .minister-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .minister-info {
+        text-align: center;
     }
     
     .news-highlights .container {
         grid-template-columns: 1fr;
-    }
-    
-    .ministers {
-        flex-direction: row;
-        justify-content: center;
+        gap: 30px;
     }
     
     .links-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .link-card {
+        aspect-ratio: 1;
+        padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .link-card i {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+    
+    .link-card h4 {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+    
+    .link-card p {
+        font-size: 12px;
+        text-align: center;
+        line-height: 1.3;
     }
     
     .footer-links {
@@ -1188,5 +1264,37 @@ body {
     .partner-logos {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .ministry-overview {
+        position: relative;
+    }
+    
+    .ministry-overview.collapsed {
+        max-height: 150px;
+        overflow: hidden;
+    }
+    
+    .read-more-btn {
+        display: block;
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+    }
+    
+    .read-more-btn:hover {
+        background: #229954;
+    }
+}
+
+@media (min-width: 769px) {
+    .read-more-btn {
+        display: none;
     }
 }
